@@ -1,10 +1,10 @@
 COVID19 Genome Analysis
 
-- [Align genome sequences](#Align_Data)
+- [Genome sequence Alignment](#Align_sequence_alignment)
 - [Infer interactions using Expectation Reflection](#Infer-interactions-using-Expectionation-Reflection)
 - [Post-processing and data visualizaion](#Post-processing-and-data-visualization)
 
-# Align Data
+# Genome sequence alignment
 	aligned file: cov_gen_aligned.fasta
 		- acquired by running: 
 			- mafft --auto --keeplength --addfragments 09062020-Cov19gisaid--SeqIdDesc200-aligned-FastaCikti.fa wuhan_ref.fasta > cov_gen_aligned.fasta
@@ -37,7 +37,7 @@ COVID19 Genome Analysis
 
 
 
-# Infer Interactions using Expectation Reflection
+# Infer interactions using Expectation Reflection
 
 - once you have an aligned file you can get DI using ER using run_covGENOME_ER.py
 - file generates .pickle files with DI
