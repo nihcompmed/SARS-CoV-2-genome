@@ -1,5 +1,6 @@
 COVID19 Genome Analysis
 =======================
+feel free to contact <evancresswell@gmail.com> or <vipulp@niddk.nih.gov > regarding questions on implementation and execution of repo
 #### Package Requirements
 - Singularity - to run the proper enviornment for code through the singularity container *LADER.simg* (https://hub.docker.com/layers/123851957/evancresswell/erdca/LADER/images/sha256-bf25a591c1682fa1c88eb7cd1b7b9dcbb13848562a0450b5aebfd0b2994e6241?context=explore)
 
