@@ -38,39 +38,57 @@ foo@bar:~$ mafft --auto --keeplength --addfragments 09062020-Cov19gisaid--SeqIdD
 
 ### Full Genome Alignment
 - Break up un-aligned fasta files
-	- Use wuhan_ref.fasta as subject 
+	- Assumes you have the following files in **/path/to/er_covid19/** 
+		- subject genome file: **wuhan_ref.fasta** 
+		- aligned genome file: **cov_gen_aligned.fasta** 
+		- directory for output: **/path/to/er_covid19/cov_fasta_files/**
 ```console
-foo@bar:~$ singularity exec -B /path/to/er_covid19/biowulf,/path/to/er_covid19/covid_proteins /path/to/er_covid19/LADER.simg python break_up_fasta.py #subject_genome_file#.fasta
-```			 
+foo@bar:~$ singularity exec -B /path/to/er_covid19/biowulf,/path/to/er_covid19/covid_proteins /path/to/er_covid19/LADER.simg python break_up_fasta.py /path/to/er_covid19/ 
+```			
+	- This creates 
+		- broken up fasta files for alignment in *path/to/er_covid19/cov_fasta_files/* 
+		- script to align:  **cov_align.swarm** (for cluster computation)
+
 - Run alignment pieces which aligns with mafft (this can be done on a cluster or sequentially).
 ```console
 foo@bar:~$ ./submit_align_swarm.script 
+	- Individual imulation requirements
+		- batches of 15 (lines in **cov_align.swarm**)
+		- 10 GB
+		- 2 hours
 ```
-- Finish by concatenating resulting mini-alignments in cov_fasta_files/ (directory created to house mini-alignments)
+- Finish by concatenating resulting mini-alignments in cov_fasta_files/ (directory created to house mini-alignments) to create full alignment: **covid_genome_full_aligned.fasta**
 ```console
-foo@bar:~$ singularity exec -B /path/to/er_covid19/biowulf,/path/to/er_covid19/covid_proteins /path/to/er_covid19/LADER.simg python concat_fasta.py 
+foo@bar:~$ singularity exec -B /path/to/er_covid19/biowulf,/path/to/er_covid19/covid_proteins /path/to/er_covid19/LADER.simg python concat_fasta.py /path/to/er_covid19/ 
 ```
 
 ### Get Clade Alignments 
 - once you have the full genome aligned file you can get clades using get_clades.py
 - get_clades.py has subject file hard coded:
 ``` console
-foo@bar:~$  singularity exec -B /path/to/er_covid19/biowulf/,/path/to/er_covid19/covid_proteins /path/to/er_covid19/LADER.simg python get_clades.py
+foo@bar:~$  singularity exec -B /path/to/er_covid19/biowulf/,/path/to/er_covid19/covid_proteins /path/to/er_covid19/LADER.simg python get_clades.py /path/to/er_covid19/
 ```
 
 
 # Infer interactions using Expectation Reflection
 [Back to Top](#Table-of-Contents)
+	- Assumes you have the following files in **/path/to/er_covid19/** 
+		- subject genome file: **wuhan_ref.fasta** 
+		- aligned genome file: **covid_genome_full_aligned.fasta** (created in [Full Genome Alignment][#Full-Genome-Alignment])
+		- directory for output: **/path/to/er_covid19/cov_fasta_files/**
+
 - once you have an aligned file you can get DI using ER using run_covGENOME_ER.py
 - file generates .pickle files with DI
 - the different clade and full sequence run are already defined in run_cov_GENOME_ER file.
-	-for all clades:
-	RUN: ./submit_DI_clade_swarm.script
-	-for full genome run
-	- hardcoded existing full aligned file
-	RUN: singularity exec -B /path/to/er_covid19/biowulf/,/path/to/er_covid19/covid_proteins /path/to/er_covid19/LADER.simg python run_covGENOME_ER.py 
-
-
+	- for all clades see **submit_DI_clade_swarm.script**:
+```console
+foo@bar:~$ ./submit_DI_clade_swarm.script
+```
+	- for full genome see **run_covGENOME_ER.py**
+		- hardcoded existing full aligned file
+```console
+foo@bar:~$  singularity exec -B /path/to/er_covid19/biowulf/,/path/to/er_covid19/covid_proteins /path/to/er_covid19/LADER.simg python run_covGENOME_ER.py 
+```
 
 
 # Post-Processing and Data Visualization
