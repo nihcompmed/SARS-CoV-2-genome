@@ -30,7 +30,7 @@ feel free to contact <evancresswell@gmail.com> or <vipulp@niddk.nih.gov > regard
 *we want to generate cov_gen_aligned.fasta from our un-aligned fasta file using the Wuhan reference genome*
 
 ### Test run
-'''console
+'''shell-session
 foo@bar:~$ mafft --auto --keeplength --addfragments 09062020-Cov19gisaid--SeqIdDesc200-aligned-FastaCikti.fa wuhan_ref.fasta > 
 '''
 
