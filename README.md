@@ -50,13 +50,15 @@ foo@bar:~$ singularity exec -B /path/to/er_covid19/biowulf,/path/to/er_covid19/c
 		- script to align:  **cov_align.swarm** (for cluster computation)
 
 - Run alignment pieces which aligns with mafft (this can be done on a cluster or sequentially).
+
 ```console
 foo@bar:~$ ./submit_align_swarm.script 
+```
+
 	- Individual imulation requirements
 		- batches of 15 (lines in **cov_align.swarm**)
 		- 10 GB
 		- 2 hours
-```
 - Finish by concatenating resulting mini-alignments in cov_fasta_files/ (directory created to house mini-alignments) to create full alignment: **covid_genome_full_aligned.fasta**
 ```console
 foo@bar:~$ singularity exec -B /path/to/er_covid19/biowulf,/path/to/er_covid19/covid_proteins /path/to/er_covid19/LADER.simg python concat_fasta.py /path/to/er_covid19/ 
@@ -65,6 +67,7 @@ foo@bar:~$ singularity exec -B /path/to/er_covid19/biowulf,/path/to/er_covid19/c
 ### Get Clade Alignments 
 - once you have the full genome aligned file you can get clades using get_clades.py
 - get_clades.py has subject file hard coded:
+
 ``` console
 foo@bar:~$  singularity exec -B /path/to/er_covid19/biowulf/,/path/to/er_covid19/covid_proteins /path/to/er_covid19/LADER.simg python get_clades.py /path/to/er_covid19/
 ```
