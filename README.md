@@ -3,6 +3,7 @@ COVID19 Genome Analysis
 feel free to contact <evancresswell@gmail.com> or <vipulp@niddk.nih.gov > regarding questions on implementation and execution of repo
 #### Package Requirements
 - Singularity - to run the proper enviornment for code through the singularity container *LADER.simg* (https://hub.docker.com/layers/123851957/evancresswell/erdca/LADER/images/sha256-bf25a591c1682fa1c88eb7cd1b7b9dcbb13848562a0450b5aebfd0b2994e6241?context=explore)
+- MAFFT - to align genome sequences
 
 ## Table of Contents
 - [Genome sequence Alignment](#Align-sequence-alignment)
@@ -38,24 +39,23 @@ foo@bar:~$ mafft --auto --keeplength --addfragments 09062020-Cov19gisaid--SeqIdD
 ### Full Genome Alignment
 - Break up un-aligned fasta files
 	- Use wuhan_ref.fasta as subject 
-- ```console
-foo@bar:~$ singularity exec -B /data/cresswellclayec/DCA_ER/biowulf,/data/cresswellclayec/DCA_ER/covid_proteins /data/cresswellclayec/DCA_ER/LADER.simg python break_up_fasta.py #subject_genome_file#.fasta
-```
-			 
+```console
+foo@bar:~$ singularity exec -B /path/to/er_covid19/biowulf,/path/to/er_covid19/covid_proteins /path/to/er_covid19/LADER.simg python break_up_fasta.py #subject_genome_file#.fasta
+```			 
 - Run alignment pieces which aligns with mafft (this can be done on a cluster or sequentially).
 ```console
 foo@bar:~$ ./submit_align_swarm.script 
 ```
 - Finish by concatenating resulting mini-alignments in cov_fasta_files/ (directory created to house mini-alignments)
 ```console
-foo@bar:~$ singularity exec -B /data/cresswellclayec/DCA_ER/biowulf,/data/cresswellclayec/DCA_ER/covid_proteins /data/cresswellclayec/DCA_ER/LADER.simg python concat_fasta.py 
+foo@bar:~$ singularity exec -B /path/to/er_covid19/biowulf,/path/to/er_covid19/covid_proteins /path/to/er_covid19/LADER.simg python concat_fasta.py 
 ```
 
 ### Get Clade Alignments 
 - once you have the full genome aligned file you can get clades using get_clades.py
 - get_clades.py has subject file hard coded:
 ``` console
-foo@bar:~$  singularity exec -B /data/cresswellclayec/DCA_ER/biowulf/,/data/cresswellclayec/DCA_ER/covid_proteins /data/cresswellclayec/DCA_ER/LADER.simg python get_clades.py
+foo@bar:~$  singularity exec -B /path/to/er_covid19/biowulf/,/path/to/er_covid19/covid_proteins /path/to/er_covid19/LADER.simg python get_clades.py
 ```
 
 
@@ -68,7 +68,7 @@ foo@bar:~$  singularity exec -B /data/cresswellclayec/DCA_ER/biowulf/,/data/cres
 	RUN: ./submit_DI_clade_swarm.script
 	-for full genome run
 	- hardcoded existing full aligned file
-	RUN: singularity exec -B /data/cresswellclayec/DCA_ER/biowulf/,/data/cresswellclayec/DCA_ER/covid_proteins /data/cresswellclayec/DCA_ER/LADER.simg python run_covGENOME_ER.py 
+	RUN: singularity exec -B /path/to/er_covid19/biowulf/,/path/to/er_covid19/covid_proteins /path/to/er_covid19/LADER.simg python run_covGENOME_ER.py 
 
 
 
