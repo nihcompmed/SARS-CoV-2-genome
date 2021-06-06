@@ -20,41 +20,40 @@ feel free to contact <evancresswell@gmail.com> or <vipulp@niddk.nih.gov > regard
 [Back to Top](#Table-of-Contents)
 
 ### Required Files
-* 09062020-Cov19gisaid--SeqIdDesc200-aligned-FastaCikti.fa
-	** previously aligned fasta file (for testing) from http://www.dilekbalik.com/SARS-CoV-2_ODOTool/
-* wuhan_ref_fasta
-	** covid reference genome: NC_045512.2
-* Full un-aligned fasta file
-	** downloaded Oct 20 20202 from https://www.epicov.org/epi3/entities/tmp/tmp_sd_2020_10_20_02_12_qigibl_4j510bafde3/sequences_2020-10-19_07-21.fasta.gz
+* **09062020-Cov19gisaid--SeqIdDesc200-aligned-FastaCikti.fa** -- previously aligned fasta file (for testing)
+	* downloaded from http://www.dilekbalik.com/SARS-CoV-2_ODOTool/
+* **wuhan_ref_fasta** -- covid reference genome: NC_045512.2
+* **09062020-Cov19gisaid--SeqIdDesc200-aligned-FastaCikti.fa** -- Full un-aligned fasta file
+	* downloaded Oct 20 20202 from https://www.epicov.org/epi3/entities/tmp/tmp_sd_2020_10_20_02_12_qigibl_4j510bafde3/sequences_2020-10-19_07-21.fasta.gz
 
 ## Alignment Process
 *we want to generate cov_gen_aligned.fasta from our un-aligned fasta file using the Wuhan reference genome*
 
 ### Test run
-'''Console
+'''console
 foo@bar:~$ mafft --auto --keeplength --addfragments 09062020-Cov19gisaid--SeqIdDesc200-aligned-FastaCikti.fa wuhan_ref.fasta > 
 '''
 
 ### Full Genome Alignment
 - Break up un-aligned fasta files
 	- Use wuhan_ref.fasta as subject 
-- '''Console
+- '''console
 foo@bar:~$ singularity exec -B /data/cresswellclayec/DCA_ER/biowulf,/data/cresswellclayec/DCA_ER/covid_proteins /data/cresswellclayec/DCA_ER/LADER.simg python break_up_fasta.py #subject_genome_file#.fasta
 '''
 			 
 - Run alignment pieces which aligns with mafft (this can be done on a cluster or sequentially).
-'''Console
+'''console
 foo@bar:~$ ./submit_align_swarm.script 
 '''
 - Finish by concatenating resulting mini-alignments in cov_fasta_files/ (directory created to house mini-alignments)
-'''Console
+'''console
 foo@bar:~$ singularity exec -B /data/cresswellclayec/DCA_ER/biowulf,/data/cresswellclayec/DCA_ER/covid_proteins /data/cresswellclayec/DCA_ER/LADER.simg python concat_fasta.py 
 '''
 
 ### Get Clade Alignments 
 - once you have the full genome aligned file you can get clades using get_clades.py
 - get_clades.py has subject file hard coded:
-''' Console
+''' console
 foo@bar:~$  singularity exec -B /data/cresswellclayec/DCA_ER/biowulf/,/data/cresswellclayec/DCA_ER/covid_proteins /data/cresswellclayec/DCA_ER/LADER.simg python get_clades.py
 '''
 
