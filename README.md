@@ -28,10 +28,12 @@ feel free to contact <evancresswell@gmail.com> or <vipulp@niddk.nih.gov > regard
 	* downloaded Oct 20 20202 from https://www.epicov.org/epi3/entities/tmp/tmp_sd_2020_10_20_02_12_qigibl_4j510bafde3/sequences_2020-10-19_07-21.fasta.gz
 
 ## Alignment Process
-*we want to generate cov_gen_aligned.fasta from our un-aligned fasta file using the Wuhan reference genome*
 [Back to Top](#Table-of-Contents)
-All FASTA data both created and required for these simulations can be found in the fasta_files/ directory, organized as follows.
+
+*we want to generate cov_gen_aligned.fasta from our un-aligned fasta file using the Wuhan reference genome*
+
 ### FASTA Data:
+All FASTA data both created and required for these simulations can be found in the fasta_files/ directory, organized as follows.
 - **.fasta** files containing full genome and clades alignments
 ### Test run
 
