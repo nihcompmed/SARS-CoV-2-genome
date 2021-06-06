@@ -30,32 +30,33 @@ feel free to contact <evancresswell@gmail.com> or <vipulp@niddk.nih.gov > regard
 *we want to generate cov_gen_aligned.fasta from our un-aligned fasta file using the Wuhan reference genome*
 
 ### Test run
-'''shell-session
+
+```console
 foo@bar:~$ mafft --auto --keeplength --addfragments 09062020-Cov19gisaid--SeqIdDesc200-aligned-FastaCikti.fa wuhan_ref.fasta > 
-'''
+```
 
 ### Full Genome Alignment
 - Break up un-aligned fasta files
 	- Use wuhan_ref.fasta as subject 
-- '''console
+- ```console
 foo@bar:~$ singularity exec -B /data/cresswellclayec/DCA_ER/biowulf,/data/cresswellclayec/DCA_ER/covid_proteins /data/cresswellclayec/DCA_ER/LADER.simg python break_up_fasta.py #subject_genome_file#.fasta
-'''
+```
 			 
 - Run alignment pieces which aligns with mafft (this can be done on a cluster or sequentially).
-'''console
+```console
 foo@bar:~$ ./submit_align_swarm.script 
-'''
+```
 - Finish by concatenating resulting mini-alignments in cov_fasta_files/ (directory created to house mini-alignments)
-'''console
+```console
 foo@bar:~$ singularity exec -B /data/cresswellclayec/DCA_ER/biowulf,/data/cresswellclayec/DCA_ER/covid_proteins /data/cresswellclayec/DCA_ER/LADER.simg python concat_fasta.py 
-'''
+```
 
 ### Get Clade Alignments 
 - once you have the full genome aligned file you can get clades using get_clades.py
 - get_clades.py has subject file hard coded:
-''' console
+``` console
 foo@bar:~$  singularity exec -B /data/cresswellclayec/DCA_ER/biowulf/,/data/cresswellclayec/DCA_ER/covid_proteins /data/cresswellclayec/DCA_ER/LADER.simg python get_clades.py
-'''
+```
 
 
 # Infer interactions using Expectation Reflection
