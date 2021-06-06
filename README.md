@@ -97,17 +97,16 @@ foo@bar:~$  singularity exec -B /path/to/er_covid19/biowulf/,/path/to/er_covid19
 # Post-Processing and Data Visualization
 [Back to Top](#Table-of-Contents)
 
-## Files Used
-* incidence_plotting.py
-* gen_incidence_data.py
-* make_codon_swarm.py
-* make_pair_aa_swarm.py
-* codon_mapping.py
-* print_pair_counts.py
-* covid_aa_bp_variance.py
-* plot_covid_genome_CT.py
-* ER_covid_PP.py
-* expectation_reflection.py
+## Scripts and Drivers
+* incidence_plotting.py - file for plotting incidence by **region** and **clade**
+* gen_incidence_data.py - driver for generating paper incidence data 
+* make_codon_swarm.py - script to create swarm (cluster) file to map sequences to to resulting amino acids using **codon_mapping.py**
+* make_pair_aa_swarm.py - script to create swarm (cluster) file to map network interactions (from ER simulation) to resulting amino acids using **codon_mapping.py**
+* codon_mapping.py - file which maps a given sequence/region of nucleotides to the resulting amino acid
+* print_pair_counts.py - driver for creating lists of amino acid pair counts from ER-inferred position pairs (detailed description in file)
+* covid_aa_bp_variance.py - a file which computes statistics of amino acid and basepair expression from given genome positions
+* plot_covid_genome_CT.py - file for plotting co-evolving postions of genome by **region** and **clade**
+* expectation_reflection.py - file to run inference of network interactions using Expectation Reflection
 
 # Results
 [Back to Top](#Table-of-Contents)
