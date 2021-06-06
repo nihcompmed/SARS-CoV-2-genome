@@ -1,7 +1,10 @@
 COVID19 Genome Analysis
+=======================
 
-- [Genome sequence Alignment](#Align_sequence_alignment)
-- [Infer interactions using Expectation Reflection](#Infer-interactions-using-Expectionation-Reflection)
+
+## Table of Contents
+- [Genome sequence Alignment](#Align-sequence-alignment)
+- [Infer interactions using Expectation Reflection](#Infer-interactions-using-Expectation-Reflection)
 - [Post-processing and data visualizaion](#Post-processing-and-data-visualization)
 
 # Genome sequence alignment
