@@ -111,25 +111,7 @@ foo@bar:~$  singularity exec -B /path/to/er_covid19/biowulf/,/path/to/er_covid19
 # Results
 [Back to Top](#Table-of-Contents)
 
-## Result txt File list:
-* s_pairs.txt
-* orf7a_pairs.txt
-* single_site_bp_aa_freq.txt
-* orf7b_pairs.txt
-* orf3a_pairs.txt
-* orf1ab_pairs.txt
-* cov_DI_fullout.txt
-* pair_aa_counts.txt
-* ORF1ab_bp_vs_aa.txt
-* codon_out.txt* 
-* cov_DI_G.txt* 
-* poster_DI.txt
-* cov_DI_S.txt
-* cov_DI_GR.txt
-* cov_DI_GH.txt
-* cov_DI_V.txt
-* cov_DI_full1.txt
-* cov_DI_full2.txt
-* cov_DI_full.txt
-* new_er_dis.txt
-* covid_sim.txt
+## Result Data:
+- **.pickle** files containing DI of full genome and clades both processed and unprocessed
+- **.npy** files containing amino acid and basepair data for infered genome positions
+- **.txt** files containing all DI pairs from clade and full genome simulations (for inspection without python run)
