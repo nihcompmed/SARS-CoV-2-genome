@@ -1,19 +1,3 @@
-For Covid Protein.
-
-File used --> allprot1017.
-
-- extract protein using: 		extract_protein.py 		(see file for singularity command)
-- remove duplicate lines using: 	remove_duplicate_lines.py	(see file for singularity command)	
-- Manually added zhang reference protein sequence to resulting fasta file
-- align resulting fasta file:		mafft --auto --thread 16 cov_fasta_files/spike_NoDup.fasta > cov_fasta_files/spike_aligned.fasta	
-- RUN ER method:			run_covPROTEIN_ER.py		(see file for singularity command)
-
-
-SIMULATION NOTES:
--- SPIKE PROTEIN 	--> pre-processing finds that all columns ar 80% > conserved.. NO CHANGES in spike protein...
--- NSP1			--> pre-processing finds that all columns ar 80% > conserved.. NO CHANGES in spike protein...
-
-
 Covid Genome Analysis.
 
 Align Data
