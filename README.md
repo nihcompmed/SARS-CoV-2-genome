@@ -1,4 +1,4 @@
-COVID19 Genome Analysis
+SARS-CoV-2 Genome Analysis
 =======================
 feel free to contact <evancresswell@gmail.com> or <vipulp@niddk.nih.gov > regarding questions on implementation and execution of repo
 #### Package Requirements
